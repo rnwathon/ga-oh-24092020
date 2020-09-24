@@ -1,25 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText,
+} from 'reactstrap';
+
+// Pages
+import Home from './Pages/Home/Home';
+import Detail from './Pages/Detail/Detail';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar color="dark" dark expand="md" className="mb-3">
+        <NavbarBrand href="/">TV Series</NavbarBrand>
+      </Navbar> 
+      <Router>
+        <Switch>
+          {/* Home Page: Nampilin semua tv series */}
+          <Route path="/" component={Home} exact />
+          {/* Detail Page: nampilin detail dari tv seriesnya */}
+          <Route path="/detail" component={Detail} />
+          {/* 404 Page */}
+          <Route render={() => "404"} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
